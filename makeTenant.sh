@@ -3,11 +3,11 @@
 ##
 # Prerequisites:
 # 0. Have this script in KRONOS repo root folder. Work from there till the end.
-# 1. Have 'symphony-aws-dev-mt' aws profile setup (need user in dev-mt with api key).This is used to work with KRONOS images.
+# 1. Have 'symphony-aws-dev-mt' aws profile setup (need user in dev-mt with api key).This is used to work with KRONOS images. Once setup, log in with: aws ecr get-login-password --region us-east-1 --profile devmt | docker login --username AWS --password-stdin 115671292914.dkr.ecr.us-east-1.amazonaws.com
 # 2. Export AWS_SECRET_ACCESS_KEY/AWS_ACCESS_KEY_ID  for env you are going to create/delete tenant in
 # 3. Export ARTIFACTORY_USERNAME (your email) and ARTIFACTORY_PASSWORD (your api key in artifactory) variables
 # 4. Create createTenant.properties with tenant parameters (similar to manifest for spinnaker)
-# 5. Run ./make[destroy]Tenant <tenantId> <platform> <env>
+# 5. Run ./make[destroy]Tenant.sh <tenantId> <platform> <env>
 # NOTE: qa env doesn't work(!)
 ##
 
