@@ -8,6 +8,7 @@
 # 3. Export ARTIFACTORY_USERNAME (your email) and ARTIFACTORY_PASSWORD (your api key in artifactory) variables
 # 4. Create createTenant.properties with tenant parameters (similar to manifest for spinnaker)
 # 5. Run ./make[destroy]Tenant <tenantId> <platform> <env>
+# NOTE: qa env doesn't work(!)
 ##
 
 TENANT_ID=$1
@@ -22,6 +23,7 @@ usage="usage: makeTenant.sh <tenantId> <platform> <env>"
 
 echo TENANT_ID=$TENANT_ID
 echo PLATFORM=$PLATFORM
+echo PMT_ENV=$PMT_ENV
 echo
 
 if [ -z $TENANT_ID ]; then
@@ -62,26 +64,19 @@ function readTenantArgs() {
   source createTenant.properties
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS}--agent $AGENT_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --api-gateway $API_GATEWAY_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --bff $BFF_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --bff-mt-enabled $BFF_MT_ENABLED"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --bff-st-enabled $BFF_ST_ENABLED"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --bootstrap $SBE_BOOTSTRAP_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --ceb $CEB_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --export $EXPORT_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --import $IMPORT_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --import-cleanup $IMPORT_CLEANUP_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --import $REINDEX_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --owner $OWNER"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --regression $REGRESSION_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --rtc-cs $RTC_CS_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --rtc-mbr-ami $RTC_MBR_AMI"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --df2-enabled $DF2_ENABLED"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --rtc-mt-enabled $RTC_MT_ENABLED"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --rtc-st-enabled $RTC_ST_ENABLED"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --sbe $SBE_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --smoke-test-platform $SMOKE_TEST_PLATFORM_TAG"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --smoke-test-tenant $SMOKE_TEST_TENANT_TAG"
-  CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --valid-email-domains $VALID_EMAIL_DOMAINS"
   CREATE_TENANT_ARGS="${CREATE_TENANT_ARGS} --xpod-client $XPOD_CLIENT_TAG"
 }
 
